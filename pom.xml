@@ -30,7 +30,6 @@
 
   <artifactId>org.apache.sling.scripting.thymeleaf</artifactId>
   <version>1.1.1-SNAPSHOT</version>
-  <packaging>bundle</packaging>
 
   <name>Apache Sling Scripting Thymeleaf</name>
   <description>Apache Sling Scripting Thymeleaf</description>
@@ -259,31 +258,12 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Import-Package>
-              com.fasterxml.jackson.*;version=${com.fasterxml.jackson.version};resolution:=optional,
-              *
-            </Import-Package>
-            <Export-Package>
-              org.apache.sling.scripting.thymeleaf,
-              org.thymeleaf.*;version=${org.thymeleaf.version};-split-package:=merge-first
-            </Export-Package>
-            <ScriptEngine-Name>${project.name}</ScriptEngine-Name>
-            <ScriptEngine-Version>${project.version}</ScriptEngine-Version>
-            <_removeheaders>
-              Embed-Dependency,
-              Private-Package,
-              Include-Resource
-            </_removeheaders>
-          </instructions>
-          <filters>
-            <filter>!org.thymeleaf</filter>
-          </filters>
-        </configuration>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-baseline-maven-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

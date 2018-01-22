@@ -1,0 +1,31 @@
+Bundle-Category: sling
+
+Bundle-Description: ${project.description}
+
+Bundle-DocURL: https://sling.apache.org
+
+Bundle-License: Apache License, Version 2.0
+
+Bundle-Vendor: The Apache Software Foundation
+
+Export-Package:\
+  org.apache.sling.scripting.thymeleaf,\
+  org.thymeleaf.*;version=${org.thymeleaf.version};-split-package:=merge-first
+
+Import-Package:\
+  com.fasterxml.jackson.*;version=${com.fasterxml.jackson.version};resolution:=optional,\
+  *
+
+ScriptEngine-Name: ${project.name}
+
+ScriptEngine-Version: ${project.version}
+
+-baseline: *
+
+-exportcontents: ${packages;VERSIONED}
+
+-removeheaders:\
+  Embed-Dependency,\
+  Embed-Transitive,\
+  Include-Resource,\
+  Private-Package
