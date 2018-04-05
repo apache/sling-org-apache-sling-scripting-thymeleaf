@@ -16,6 +16,9 @@ Import-Package:\
   com.fasterxml.jackson.*;version=${com.fasterxml.jackson.version};resolution:=optional,\
   *
 
+Provide-Capability:\
+  osgi.service;objectClass=org.thymeleaf.ITemplateEngine
+
 ScriptEngine-Name: ${project.name}
 
 ScriptEngine-Version: ${project.version}
