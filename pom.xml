@@ -158,8 +158,8 @@
     <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.paxexam</artifactId>
-      <version>1.0.0</version>
-      <scope>provided</scope>
+      <version>2.0.0</version>
+      <scope>test</scope>
     </dependency>
     <!-- Thymeleaf -->
     <dependency>
@@ -196,7 +196,7 @@
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
-      <version>1.10.2</version>
+      <version>1.11.3</version>
       <scope>test</scope>
     </dependency>
     <!-- jsr305 -->
