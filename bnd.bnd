@@ -60,12 +60,8 @@ ScriptEngine-Name: ${project.name}
 
 ScriptEngine-Version: ${project.version}
 
--baseline: *
-
 -exportcontents: ${packages;VERSIONED}
 
 -removeheaders:\
-  Embed-Dependency,\
-  Embed-Transitive,\
   Include-Resource,\
   Private-Package
