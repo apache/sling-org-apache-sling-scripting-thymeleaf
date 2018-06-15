@@ -31,9 +31,3 @@ There is a feature for [Karaf](https://github.com/apache/sling/tree/trunk/contri
     karaf@root()> feature:install sling-scripting-thymeleaf
 
 **Note:** Sling Scripting Thymeleaf requires an implementation of OSGi Declarative Services 1.3 (e.g. [Apache Felix Service Component Runtime](http://felix.apache.org/documentation/subprojects/apache-felix-service-component-runtime.html) 2.0.0 or greater)
-
-## Relevant Thymeleaf issues
-
-* [Create OSGi bundle](https://github.com/thymeleaf/thymeleaf/issues/32)
-* [keep (custom) IContext accessible](https://github.com/thymeleaf/thymeleaf/issues/388)
-* [Make IContext available in ITemplateResolver](https://github.com/thymeleaf/thymeleaf/issues/514)

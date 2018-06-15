@@ -55,7 +55,7 @@ public class LinkBuilderIT extends ThymeleafTestSupport {
     @Test
     public void testBarLink() throws IOException {
         final Element link = document.getElementById("bar");
-        assertThat(link.attributes().get("href"), is("bar"));
+        assertThat(link.attributes().get("href"), is("/thymeleaf/bar"));
     }
 
 }

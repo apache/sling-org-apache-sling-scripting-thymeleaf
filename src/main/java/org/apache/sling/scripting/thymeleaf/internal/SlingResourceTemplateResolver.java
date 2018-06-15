@@ -22,7 +22,7 @@ import java.util.Map;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.scripting.thymeleaf.SlingContext;
+import org.apache.sling.scripting.api.resource.ScriptingResourceResolverProvider;
 import org.apache.sling.scripting.thymeleaf.TemplateModeProvider;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Activate;
@@ -39,7 +39,6 @@ import org.slf4j.LoggerFactory;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.cache.ICacheEntryValidity;
 import org.thymeleaf.cache.NonCacheableCacheEntryValidity;
-import org.thymeleaf.context.IContext;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolution;
@@ -65,6 +64,13 @@ public class SlingResourceTemplateResolver implements ITemplateResolver {
         unbind = "unsetTemplateModeProvider"
     )
     private volatile TemplateModeProvider templateModeProvider;
+
+    @Reference(
+            cardinality = ReferenceCardinality.MANDATORY,
+            policy = ReferencePolicy.DYNAMIC,
+            policyOption = ReferencePolicyOption.GREEDY
+    )
+    private volatile ScriptingResourceResolverProvider scriptingResourceResolverProvider;
 
     private SlingResourceTemplateResolverConfiguration configuration;
 
@@ -109,31 +115,26 @@ public class SlingResourceTemplateResolver implements ITemplateResolver {
     }
 
     @Override
-    public TemplateResolution resolveTemplate(final IEngineConfiguration engineConfiguration, final IContext context, final String ownerTemplate, final String template, final Map<String, Object> templateResolutionAttributes) {
+    public TemplateResolution resolveTemplate(final IEngineConfiguration engineConfiguration, final String ownerTemplate, final String template, final Map<String, Object> templateResolutionAttributes) {
         logger.debug("resolving template '{}'", template);
-        if (context instanceof SlingContext) {
-            final SlingContext slingContext = (SlingContext) context;
-            final ResourceResolver resourceResolver = slingContext.getResourceResolver();
-            final Resource resource = resourceResolver.getResource(template);
-            if (resource == null) {
-                logger.warn("resource for template '{}' is null, not resolving template", template);
-                return null;
-            }
-            final ITemplateResource templateResource = new SlingTemplateResource(resource);
-            final boolean templateResourceExistenceVerified = false;
-            final TemplateMode templateMode = templateModeProvider.provideTemplateMode(resource);
-            if (templateMode == null) {
-                logger.warn("template mode for template '{}' is null, not resolving template", template);
-                return null;
-            } else {
-                logger.debug("using template mode {} for template '{}'", templateMode, template);
-                final boolean useDecoupledLogic = templateMode.isMarkup() && configuration.useDecoupledLogic();
-                final ICacheEntryValidity validity = NonCacheableCacheEntryValidity.INSTANCE;
-                return new TemplateResolution(templateResource, templateResourceExistenceVerified, templateMode, useDecoupledLogic, validity);
-            }
-        } else {
-            logger.error("context is not an instance of SlingContext");
+        // per thread service resource resolver
+        final ResourceResolver resourceResolver = scriptingResourceResolverProvider.getRequestScopedResourceResolver();
+        final Resource resource = resourceResolver.getResource(template);
+        if (resource == null) {
+            logger.warn("resource for template '{}' is null, not resolving template", template);
             return null;
+        }
+        final ITemplateResource templateResource = new SlingTemplateResource(resource);
+        final boolean templateResourceExistenceVerified = false;
+        final TemplateMode templateMode = templateModeProvider.provideTemplateMode(resource);
+        if (templateMode == null) {
+            logger.warn("template mode for template '{}' is null, not resolving template", template);
+            return null;
+        } else {
+            logger.debug("using template mode {} for template '{}'", templateMode, template);
+            final boolean useDecoupledLogic = templateMode.isMarkup() && configuration.useDecoupledLogic();
+            final ICacheEntryValidity validity = NonCacheableCacheEntryValidity.INSTANCE;
+            return new TemplateResolution(templateResource, templateResourceExistenceVerified, templateMode, useDecoupledLogic, validity);
         }
     }
 

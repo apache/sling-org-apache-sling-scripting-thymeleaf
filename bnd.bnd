@@ -8,51 +8,6 @@ Bundle-License: Apache License, Version 2.0
 
 Bundle-Vendor: The Apache Software Foundation
 
-Export-Package:\
-  org.apache.sling.scripting.thymeleaf,\
-  org.thymeleaf;version=5.0.0,\
-  org.thymeleaf.cache;version=3.1.0,\
-  org.thymeleaf.context;version=3.1.0,\
-  org.thymeleaf.dialect;version=3.0.0,\
-  org.thymeleaf.engine;version=4.0.0;-split-package:=merge-first,\
-  org.thymeleaf.exceptions;version=3.0.0,\
-  org.thymeleaf.expression;version=3.1.0,\
-  org.thymeleaf.inline;version=3.0.0,\
-  org.thymeleaf.linkbuilder;version=3.0.0,\
-  org.thymeleaf.messageresolver;version=3.0.0,\
-  org.thymeleaf.model;version=3.0.0,\
-  org.thymeleaf.postprocessor;version=3.0.0,\
-  org.thymeleaf.preprocessor;version=3.0.0,\
-  org.thymeleaf.processor;version=3.0.0,\
-  org.thymeleaf.processor.cdatasection;version=3.0.0,\
-  org.thymeleaf.processor.comment;version=3.0.0,\
-  org.thymeleaf.processor.doctype;version=3.0.0,\
-  org.thymeleaf.processor.element;version=3.0.0,\
-  org.thymeleaf.processor.processinginstruction;version=3.0.0,\
-  org.thymeleaf.processor.templateboundaries;version=3.0.0,\
-  org.thymeleaf.processor.text;version=3.0.0 ,\
-  org.thymeleaf.processor.xmldeclaration;version=3.0.0,\
-  org.thymeleaf.standard;version=3.0.0,\
-  org.thymeleaf.standard.expression;version=3.1.0,\
-  org.thymeleaf.standard.inline;version=3.0.0,\
-  org.thymeleaf.standard.processor;version=3.1.0,\
-  org.thymeleaf.standard.serializer;version=3.0.0,\
-  org.thymeleaf.standard.util;version=3.0.0,\
-  org.thymeleaf.templatemode;version=3.0.0,\
-  org.thymeleaf.templateparser;version=3.0.0,\
-  org.thymeleaf.templateparser.markup;version=3.0.0,\
-  org.thymeleaf.templateparser.markup.decoupled;version=3.0.0,\
-  org.thymeleaf.templateparser.raw;version=3.0.0,\
-  org.thymeleaf.templateparser.reader;version=3.0.0,\
-  org.thymeleaf.templateparser.text;version=4.0.0,\
-  org.thymeleaf.templateresolver;version=3.1.0;-split-package:=merge-first,\
-  org.thymeleaf.templateresource;version=3.1.0,\
-  org.thymeleaf.util;version=3.3.0
-
-Import-Package:\
-  com.fasterxml.jackson.*;version=${com.fasterxml.jackson.version};resolution:=optional,\
-  *
-
 Provide-Capability:\
   osgi.service;objectClass=org.thymeleaf.ITemplateEngine
 

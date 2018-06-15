@@ -27,6 +27,7 @@ import java.util.Set;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineFactory;
+import javax.servlet.ServletContext;
 
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.scripting.api.AbstractScriptEngineFactory;
@@ -122,6 +123,7 @@ public final class ThymeleafScriptEngineFactory extends AbstractScriptEngineFact
     private volatile ICacheManager cacheManager;
 
     @Reference(
+        cardinality = ReferenceCardinality.OPTIONAL,
         policy = ReferencePolicy.DYNAMIC,
         policyOption = ReferencePolicyOption.GREEDY,
         bind = "setEngineContextFactory",
@@ -134,6 +136,13 @@ public final class ThymeleafScriptEngineFactory extends AbstractScriptEngineFact
         policyOption = ReferencePolicyOption.GREEDY
     )
     private volatile ScriptingResourceResolverProvider scriptingResourceResolverProvider;
+
+    @Reference(
+        policy = ReferencePolicy.DYNAMIC,
+        policyOption = ReferencePolicyOption.GREEDY,
+        target = "(name=org.apache.sling)"
+    )
+    private volatile ServletContext servletContext;
 
     private ThymeleafScriptEngineFactoryConfiguration configuration;
 
@@ -430,6 +439,10 @@ public final class ThymeleafScriptEngineFactory extends AbstractScriptEngineFact
 
     ResourceResolver getRequestScopedResourceResolver() {
         return scriptingResourceResolverProvider.getRequestScopedResourceResolver();
+    }
+
+    ServletContext getSlingServletContext() {
+        return servletContext;
     }
 
 }

@@ -45,6 +45,7 @@ import static org.apache.sling.testing.paxexam.SlingOptions.slingScriptingJsp;
 import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static org.ops4j.pax.exam.CoreOptions.wrappedBundle;
 
 public abstract class ThymeleafTestSupport extends TestSupport {
 
@@ -77,6 +78,7 @@ public abstract class ThymeleafTestSupport extends TestSupport {
             quickstart(),
             // Sling Scripting Thymeleaf
             testBundle("bundle.filename"),
+            wrappedBundle(mavenBundle().groupId("org.thymeleaf").artifactId("thymeleaf").versionAsInProject()),
             mavenBundle().groupId("org.attoparser").artifactId("attoparser").versionAsInProject(),
             mavenBundle().groupId("org.unbescape").artifactId("unbescape").versionAsInProject(),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.ognl").versionAsInProject(),
