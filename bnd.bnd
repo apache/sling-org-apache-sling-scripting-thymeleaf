@@ -2,7 +2,7 @@ Bundle-Category: sling
 
 Bundle-Description: ${project.description}
 
-Bundle-DocURL: https://sling.apache.org
+Bundle-DocURL: https://sling.apache.org/documentation/bundles/scripting/scripting-thymeleaf.html
 
 Bundle-License: Apache License, Version 2.0
 
