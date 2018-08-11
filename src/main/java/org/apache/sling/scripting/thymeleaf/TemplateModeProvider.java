@@ -19,12 +19,14 @@
 package org.apache.sling.scripting.thymeleaf;
 
 import org.apache.sling.api.resource.Resource;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 import org.thymeleaf.templatemode.TemplateMode;
 
 @ProviderType
 public interface TemplateModeProvider {
 
-    TemplateMode provideTemplateMode(final Resource resource);
+    @Nullable TemplateMode provideTemplateMode(@NotNull final Resource resource);
 
 }

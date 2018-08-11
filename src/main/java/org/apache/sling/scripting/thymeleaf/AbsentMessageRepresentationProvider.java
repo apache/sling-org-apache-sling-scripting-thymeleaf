@@ -18,12 +18,14 @@
  */
 package org.apache.sling.scripting.thymeleaf;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 import org.thymeleaf.context.ITemplateContext;
 
 @ProviderType
 public interface AbsentMessageRepresentationProvider {
 
-    String provideAbsentMessageRepresentation(final ITemplateContext templateContext, final Class<?> origin, final String key, final Object[] messageParameters);
+    @Nullable String provideAbsentMessageRepresentation(@Nullable final ITemplateContext templateContext, @Nullable final Class<?> origin, @NotNull final String key, @Nullable final Object[] messageParameters);
 
 }
