@@ -66,9 +66,9 @@ public class SlingResourceTemplateResolver implements ITemplateResolver {
     private volatile TemplateModeProvider templateModeProvider;
 
     @Reference(
-            cardinality = ReferenceCardinality.MANDATORY,
-            policy = ReferencePolicy.DYNAMIC,
-            policyOption = ReferencePolicyOption.GREEDY
+        cardinality = ReferenceCardinality.MANDATORY,
+        policy = ReferencePolicy.DYNAMIC,
+        policyOption = ReferencePolicyOption.GREEDY
     )
     private volatile ScriptingResourceResolverProvider scriptingResourceResolverProvider;
 
