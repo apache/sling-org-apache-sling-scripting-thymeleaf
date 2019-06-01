@@ -78,7 +78,7 @@ public final class ThymeleafScriptEngineFactory extends AbstractScriptEngineFact
         bind = "addTemplateResolver",
         unbind = "removeTemplateResolver"
     )
-    private List<ITemplateResolver> templateResolvers;
+    private volatile List<ITemplateResolver> templateResolvers;
 
     @Reference(
         cardinality = ReferenceCardinality.AT_LEAST_ONE,
@@ -86,7 +86,7 @@ public final class ThymeleafScriptEngineFactory extends AbstractScriptEngineFact
         bind = "addMessageResolver",
         unbind = "removeMessageResolver"
     )
-    private List<IMessageResolver> messageResolvers;
+    private volatile List<IMessageResolver> messageResolvers;
 
     @Reference(
         cardinality = ReferenceCardinality.AT_LEAST_ONE,
@@ -94,7 +94,7 @@ public final class ThymeleafScriptEngineFactory extends AbstractScriptEngineFact
         bind = "addDialect",
         unbind = "removeDialect"
     )
-    private List<IDialect> dialects;
+    private volatile List<IDialect> dialects;
 
     @Reference(
         cardinality = ReferenceCardinality.MULTIPLE,
@@ -102,7 +102,7 @@ public final class ThymeleafScriptEngineFactory extends AbstractScriptEngineFact
         bind = "addLinkBuilder",
         unbind = "removeLinkBuilder"
     )
-    private List<ILinkBuilder> linkBuilders;
+    private volatile List<ILinkBuilder> linkBuilders;
 
     @Reference(
         cardinality = ReferenceCardinality.OPTIONAL,
