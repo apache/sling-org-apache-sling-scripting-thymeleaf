@@ -27,6 +27,7 @@ import org.apache.sling.engine.SlingRequestProcessor;
 import org.apache.sling.scripting.thymeleaf.it.app.Activator;
 import org.apache.sling.serviceusermapping.ServiceUserMapped;
 import org.apache.sling.testing.paxexam.TestSupport;
+import org.jetbrains.annotations.NotNull;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.ProbeBuilder;
@@ -90,7 +91,7 @@ public abstract class ThymeleafTestSupport extends TestSupport {
     }
 
     @ProbeBuilder
-    public TestProbeBuilder probeConfiguration(final TestProbeBuilder testProbeBuilder) {
+    public TestProbeBuilder probeConfiguration(@NotNull final TestProbeBuilder testProbeBuilder) {
         testProbeBuilder.setHeader(Constants.BUNDLE_ACTIVATOR, Activator.class.getName());
         testProbeBuilder.setHeader(Constants.BUNDLE_SYMBOLICNAME, "org.apache.sling.scripting.thymeleaf.it.app");
         testProbeBuilder.setHeader(Constants.EXPORT_PACKAGE, "org.apache.sling.scripting.thymeleaf.it.app");
