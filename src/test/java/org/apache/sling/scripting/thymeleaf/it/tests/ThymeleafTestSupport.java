@@ -46,6 +46,7 @@ import static org.apache.sling.testing.paxexam.SlingOptions.slingScriptingJsp;
 import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static org.ops4j.pax.exam.CoreOptions.options;
 
 public abstract class ThymeleafTestSupport extends TestSupport {
 
@@ -73,7 +74,7 @@ public abstract class ThymeleafTestSupport extends TestSupport {
 
     @Configuration
     public Option[] configuration() {
-        return new Option[]{
+        return options(
             baseConfiguration(),
             quickstart(),
             // Sling Scripting Thymeleaf
@@ -87,7 +88,7 @@ public abstract class ThymeleafTestSupport extends TestSupport {
             mavenBundle().groupId("org.jsoup").artifactId("jsoup").versionAsInProject(),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.hamcrest").versionAsInProject(),
             junitBundles()
-        };
+        );
     }
 
     @ProbeBuilder
