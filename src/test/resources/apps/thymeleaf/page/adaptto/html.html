@@ -17,12 +17,12 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<html data-th-with="page=${request.adaptTo(@org.apache.sling.scripting.thymeleaf.it.app.Page@class)}">
+<html lang="en" data-th-with="page=${request.adaptTo(@org.apache.sling.scripting.thymeleaf.it.app.Page@class)}">
 <head>
   <meta charset="UTF-8"/>
-  <title data-th-text="${page.title}">Thymeleaf With with Sling Model</title>
+  <title data-th-text="${page.title}">Thymeleaf</title>
 </head>
 <body>
-<span id="name" data-th-text="${page.name}"></span>
+<span id="name" data-th-text="${page.name}">Page Name</span>
 </body>
 </html>

@@ -17,21 +17,21 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<html>
+<html lang="de">
 <head>
   <meta charset="UTF-8"/>
   <title>Sling Include (with JSP)</title>
 </head>
 <body>
 <!-- simple include with resource type -->
-<span id="simple" data-sling-include="${resource}" data-sling-resourceType="'jsp/page/resource'"></span>
+<span id="simple" data-sling-include="${resource}" data-sling-resourceType="'jsp/page/resource'">simple</span>
 <!-- include (keeping container element) -->
 <div id="wrap">
-  <span data-sling-include="${resource}" data-sling-resourceType="'jsp/page/resource'" data-sling-unwrap="false"></span>
+  <span data-sling-include="${resource}" data-sling-resourceType="'jsp/page/resource'" data-sling-unwrap="false">wrap</span>
 </div>
 <!-- include (unwrapping) -->
 <div id="unwrap">
-  <span data-sling-include="${resource}" data-sling-resourceType="'jsp/page/resource'" data-sling-unwrap="true"></span>
+  <span data-sling-include="${resource}" data-sling-resourceType="'jsp/page/resource'" data-sling-unwrap="true">unwrap</span>
 </div>
 </body>
 </html>
