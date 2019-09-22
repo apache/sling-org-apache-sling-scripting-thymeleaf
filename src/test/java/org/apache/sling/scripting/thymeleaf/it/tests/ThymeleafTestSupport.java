@@ -97,11 +97,7 @@ public abstract class ThymeleafTestSupport extends TestSupport {
         testProbeBuilder.setHeader(Constants.BUNDLE_SYMBOLICNAME, "org.apache.sling.scripting.thymeleaf.it.app");
         testProbeBuilder.setHeader(Constants.EXPORT_PACKAGE, "org.apache.sling.scripting.thymeleaf.it.app");
         testProbeBuilder.setHeader("Sling-Model-Packages", "org.apache.sling.scripting.thymeleaf.it.app");
-        testProbeBuilder.setHeader("Sling-Initial-Content", String.join(",",
-            "apps/jsp;path:=/apps/jsp;overwrite:=true;uninstall:=true",
-            "apps/thymeleaf;path:=/apps/thymeleaf;overwrite:=true;uninstall:=true",
-            "content;path:=/content;overwrite:=true;uninstall:=true"
-        ));
+        testProbeBuilder.setHeader("Sling-Initial-Content", "initial-content");
         return testProbeBuilder;
     }
 
