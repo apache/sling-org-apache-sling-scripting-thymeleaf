@@ -154,7 +154,7 @@ public final class ThymeleafScriptEngineFactory extends AbstractScriptEngineFact
 
     private final Object lock = new Object();
 
-    private final String THYMELEAF_PROPERTIES = "/org/thymeleaf/thymeleaf.properties";
+    private static final String THYMELEAF_PROPERTIES = "/org/thymeleaf/thymeleaf.properties";
 
     private final Logger logger = LoggerFactory.getLogger(ThymeleafScriptEngineFactory.class);
 
