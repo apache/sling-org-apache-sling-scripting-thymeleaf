@@ -25,6 +25,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
     name = "Apache Sling Scripting Thymeleaf “ScriptEngineFactory”",
     description = "Script engine factory for Thymeleaf's template engine."
 )
+@SuppressWarnings("java:S100")
 @interface ThymeleafScriptEngineFactoryConfiguration {
 
     @AttributeDefinition(
