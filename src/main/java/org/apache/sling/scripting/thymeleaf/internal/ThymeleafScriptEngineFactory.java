@@ -159,7 +159,7 @@ public final class ThymeleafScriptEngineFactory extends AbstractScriptEngineFact
 
     private final Logger logger = LoggerFactory.getLogger(ThymeleafScriptEngineFactory.class);
 
-    public ThymeleafScriptEngineFactory() {
+    public ThymeleafScriptEngineFactory() { //
     }
 
     protected void addTemplateResolver(final ITemplateResolver templateResolver) {
@@ -412,7 +412,7 @@ public final class ThymeleafScriptEngineFactory extends AbstractScriptEngineFact
     }
 
     private void registerTemplateEngine() {
-        if (templateEngine == null || templateEngine.getTemplateResolvers().size() == 0 || templateEngine.getMessageResolvers().size() == 0 || templateEngine.getDialects().size() == 0) {
+        if (templateEngine == null || templateEngine.getTemplateResolvers().isEmpty() || templateEngine.getMessageResolvers().isEmpty() || templateEngine.getDialects().isEmpty()) {
             return;
         }
         final Dictionary<String, String> properties = new Hashtable<>();
