@@ -54,6 +54,7 @@ import org.thymeleaf.templateresource.ITemplateResource;
 @Designate(
     ocd = SlingResourceTemplateResolverConfiguration.class
 )
+@SuppressWarnings("java:S3077")
 public class SlingResourceTemplateResolver implements ITemplateResolver {
 
     @Reference(

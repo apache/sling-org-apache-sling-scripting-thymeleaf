@@ -70,6 +70,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 @Designate(
     ocd = ThymeleafScriptEngineFactoryConfiguration.class
 )
+@SuppressWarnings("java:S3077")
 public final class ThymeleafScriptEngineFactory extends AbstractScriptEngineFactory {
 
     @Reference(
