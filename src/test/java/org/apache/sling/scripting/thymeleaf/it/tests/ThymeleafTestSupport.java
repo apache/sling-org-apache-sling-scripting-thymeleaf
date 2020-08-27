@@ -47,6 +47,7 @@ import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.options;
+import static org.ops4j.pax.exam.CoreOptions.vmOption;
 
 public abstract class ThymeleafTestSupport extends TestSupport {
 
@@ -87,7 +88,8 @@ public abstract class ThymeleafTestSupport extends TestSupport {
             // testing
             mavenBundle().groupId("org.jsoup").artifactId("jsoup").versionAsInProject(),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.hamcrest").versionAsInProject(),
-            junitBundles()
+            junitBundles(),
+            vmOption(System.getProperty("jacoco.command"))
         );
     }
 
