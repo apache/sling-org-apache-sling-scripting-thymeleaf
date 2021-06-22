@@ -18,6 +18,8 @@
  */
 package org.apache.sling.scripting.thymeleaf.it.tests;
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 import javax.script.ScriptEngineFactory;
 
@@ -32,6 +34,8 @@ import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.ProbeBuilder;
 import org.ops4j.pax.exam.TestProbeBuilder;
+import org.ops4j.pax.exam.options.OptionalCompositeOption;
+import org.ops4j.pax.exam.options.extra.VMOption;
 import org.ops4j.pax.exam.util.Filter;
 import org.osgi.framework.Constants;
 import org.osgi.service.http.HttpService;
@@ -48,6 +52,7 @@ import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.options;
 import static org.ops4j.pax.exam.CoreOptions.vmOption;
+import static org.ops4j.pax.exam.CoreOptions.when;
 
 public abstract class ThymeleafTestSupport extends TestSupport {
 
@@ -89,8 +94,15 @@ public abstract class ThymeleafTestSupport extends TestSupport {
             mavenBundle().groupId("org.jsoup").artifactId("jsoup").versionAsInProject(),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.hamcrest").versionAsInProject(),
             junitBundles(),
-            vmOption(System.getProperty("jacoco.command"))
+            jacoco() // remove with Testing PaxExam 4.0
         );
+    }
+
+    // remove with Testing PaxExam 4.0
+    protected OptionalCompositeOption jacoco() {
+        final String jacocoCommand = System.getProperty("jacoco.command");
+        final VMOption option = Objects.nonNull(jacocoCommand) && !jacocoCommand.trim().isEmpty() ? vmOption(jacocoCommand) : null;
+        return when(Objects.nonNull(option)).useOptions(option);
     }
 
     @ProbeBuilder
