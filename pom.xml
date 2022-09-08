@@ -134,7 +134,7 @@
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.framework</artifactId>
-      <version>6.0.3</version>
+      <version>7.0.5</version>
       <scope>test</scope>
     </dependency>
     <!-- Apache Sling -->
@@ -170,6 +170,12 @@
     </dependency>
     <dependency>
       <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.resource.presence</artifactId>
+      <scope>test</scope>
+      <version>0.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.serviceusermapper</artifactId>
       <version>1.4.0</version>
       <scope>test</scope>
@@ -189,7 +195,7 @@
     <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.paxexam</artifactId>
-      <version>3.0.0</version>
+      <version>4.0.0-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
     <!-- Thymeleaf -->
@@ -227,7 +233,7 @@
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
-      <version>1.11.3</version>
+      <version>1.15.3</version>
       <scope>test</scope>
     </dependency>
     <!-- nullability -->

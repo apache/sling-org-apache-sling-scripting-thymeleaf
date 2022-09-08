@@ -18,24 +18,20 @@
  */
 package org.apache.sling.scripting.thymeleaf.it.tests;
 
-import java.util.Objects;
-
 import javax.inject.Inject;
 import javax.script.ScriptEngineFactory;
 
 import org.apache.sling.api.servlets.ServletResolver;
 import org.apache.sling.auth.core.AuthenticationSupport;
 import org.apache.sling.engine.SlingRequestProcessor;
+import org.apache.sling.resource.presence.ResourcePresence;
 import org.apache.sling.scripting.thymeleaf.it.app.Activator;
-import org.apache.sling.serviceusermapping.ServiceUserMapped;
 import org.apache.sling.testing.paxexam.TestSupport;
 import org.jetbrains.annotations.NotNull;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.ProbeBuilder;
 import org.ops4j.pax.exam.TestProbeBuilder;
-import org.ops4j.pax.exam.options.OptionalCompositeOption;
-import org.ops4j.pax.exam.options.extra.VMOption;
 import org.ops4j.pax.exam.util.Filter;
 import org.osgi.framework.Constants;
 import org.osgi.service.http.HttpService;
@@ -45,14 +41,13 @@ import static org.apache.sling.testing.paxexam.SlingOptions.slingI18n;
 import static org.apache.sling.testing.paxexam.SlingOptions.slingInstallerProviderJcr;
 import static org.apache.sling.testing.paxexam.SlingOptions.slingModels;
 import static org.apache.sling.testing.paxexam.SlingOptions.slingQuickstartOakTar;
+import static org.apache.sling.testing.paxexam.SlingOptions.slingResourcePresence;
 import static org.apache.sling.testing.paxexam.SlingOptions.slingScripting;
 import static org.apache.sling.testing.paxexam.SlingOptions.slingScriptingJsp;
 import static org.ops4j.pax.exam.CoreOptions.composite;
-import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.options;
-import static org.ops4j.pax.exam.CoreOptions.vmOption;
-import static org.ops4j.pax.exam.CoreOptions.when;
+import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.factoryConfiguration;
 
 public abstract class ThymeleafTestSupport extends TestSupport {
 
@@ -76,7 +71,8 @@ public abstract class ThymeleafTestSupport extends TestSupport {
     protected ITemplateEngine templateEngine;
 
     @Inject
-    protected ServiceUserMapped serviceUserMapped;
+    @Filter(value = "(path=/apps/thymeleaf)")
+    private ResourcePresence resourcePresence;
 
     @Configuration
     public Option[] configuration() {
@@ -91,18 +87,15 @@ public abstract class ThymeleafTestSupport extends TestSupport {
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.ognl").versionAsInProject(),
             mavenBundle().groupId("org.javassist").artifactId("javassist").versionAsInProject(),
             // testing
-            mavenBundle().groupId("org.jsoup").artifactId("jsoup").versionAsInProject(),
-            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.hamcrest").versionAsInProject(),
-            junitBundles(),
-            jacoco() // remove with Testing PaxExam 4.0
+            slingResourcePresence(),
+            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
+                .put("scripts", new String[]{"create path (sling:OrderedFolder) /content/thymeleaf\nset ACL for everyone\nallow jcr:read on /content/thymeleaf\nend"})
+                .asOption(),
+            factoryConfiguration("org.apache.sling.resource.presence.internal.ResourcePresenter")
+                .put("path", "/apps/thymeleaf")
+                .asOption(),
+            mavenBundle().groupId("org.jsoup").artifactId("jsoup").versionAsInProject()
         );
-    }
-
-    // remove with Testing PaxExam 4.0
-    protected OptionalCompositeOption jacoco() {
-        final String jacocoCommand = System.getProperty("jacoco.command");
-        final VMOption option = Objects.nonNull(jacocoCommand) && !jacocoCommand.trim().isEmpty() ? vmOption(jacocoCommand) : null;
-        return when(Objects.nonNull(option)).useOptions(option);
     }
 
     @ProbeBuilder
