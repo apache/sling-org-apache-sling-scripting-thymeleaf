@@ -26,6 +26,6 @@ import org.thymeleaf.context.ITemplateContext;
 @ProviderType
 public interface AbsentMessageRepresentationProvider {
 
-    @Nullable String provideAbsentMessageRepresentation(@Nullable final ITemplateContext templateContext, @Nullable final Class<?> origin, @NotNull final String key, @Nullable final Object[] messageParameters);
+    public abstract @Nullable String provideAbsentMessageRepresentation(@Nullable final ITemplateContext templateContext, @Nullable final Class<?> origin, @NotNull final String key, @Nullable final Object[] messageParameters);
 
 }

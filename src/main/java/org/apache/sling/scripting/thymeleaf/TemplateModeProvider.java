@@ -27,6 +27,6 @@ import org.thymeleaf.templatemode.TemplateMode;
 @ProviderType
 public interface TemplateModeProvider {
 
-    @Nullable TemplateMode provideTemplateMode(@NotNull final Resource resource);
+    public abstract @Nullable TemplateMode provideTemplateMode(@NotNull final Resource resource);
 
 }
