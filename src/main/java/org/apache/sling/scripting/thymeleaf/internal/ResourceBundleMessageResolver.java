@@ -51,7 +51,7 @@ import org.thymeleaf.messageresolver.IMessageResolver;
     ocd = ResourceBundleMessageResolverConfiguration.class
 )
 @SuppressWarnings("java:S3077")
-public class ResourceBundleMessageResolver implements IMessageResolver {
+public final class ResourceBundleMessageResolver implements IMessageResolver {
 
     @Reference(
         cardinality = ReferenceCardinality.MANDATORY,

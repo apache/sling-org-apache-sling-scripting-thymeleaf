@@ -44,7 +44,7 @@ import org.thymeleaf.standard.expression.IStandardExpressionParser;
 import org.thymeleaf.standard.expression.StandardExpressions;
 import org.thymeleaf.templatemode.TemplateMode;
 
-public class SlingIncludeAttributeTagProcessor extends AbstractAttributeTagProcessor {
+public final class SlingIncludeAttributeTagProcessor extends AbstractAttributeTagProcessor {
 
     public static final int ATTRIBUTE_PRECEDENCE = 100;
 

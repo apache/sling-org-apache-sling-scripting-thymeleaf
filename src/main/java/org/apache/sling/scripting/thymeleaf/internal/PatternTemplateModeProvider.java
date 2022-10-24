@@ -43,7 +43,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 @Designate(
     ocd = PatternTemplateModeProviderConfiguration.class
 )
-public class PatternTemplateModeProvider implements TemplateModeProvider {
+public final class PatternTemplateModeProvider implements TemplateModeProvider {
 
     private Pattern htmlPattern;
 

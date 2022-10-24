@@ -30,7 +30,7 @@ import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.path.PathBuilder;
 import org.thymeleaf.templateresource.ITemplateResource;
 
-public class SlingTemplateResource implements ITemplateResource {
+public final class SlingTemplateResource implements ITemplateResource {
 
     private final Resource resource;
 

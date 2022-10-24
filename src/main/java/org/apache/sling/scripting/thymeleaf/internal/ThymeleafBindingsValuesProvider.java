@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
         "javax.script.name=thymeleaf"
     }
 )
-public class ThymeleafBindingsValuesProvider implements BindingsValuesProvider {
+public final class ThymeleafBindingsValuesProvider implements BindingsValuesProvider {
 
     private static final String PROPERTIES = "properties";
 
