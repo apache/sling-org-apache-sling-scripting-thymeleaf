@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache.sling</groupId>
     <artifactId>sling-bundle-parent</artifactId>
-    <version>49</version>
+    <version>51</version>
     <relativePath />
   </parent>
 
@@ -35,7 +35,7 @@
   <description>Apache Sling Scripting Thymeleaf</description>
 
   <properties>
-    <project.build.outputTimestamp>1970-01-01T00:00:00Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>1980-01-01T00:00:02Z</project.build.outputTimestamp>
     <sling.java.version>8</sling.java.version>
     <javadoc.excludePackageNames/>
     <org.ops4j.pax.exam.version>4.13.3</org.ops4j.pax.exam.version>
@@ -123,7 +123,7 @@
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>osgi.core</artifactId>
+      <artifactId>org.osgi.framework</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
